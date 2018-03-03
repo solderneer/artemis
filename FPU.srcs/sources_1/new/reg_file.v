@@ -34,13 +34,16 @@ module reg_file(
     
     // Initialize internal registers
     reg [15:0] regs[7:0];
+    
+    // Loop variable
+    reg count;
   
     // Initialize output registers
     initial begin
         O_dataA = 1'd0;
         O_dataB = 1'd0;
         
-        for(integer count = 0; count < 8; count = count + 1)
+        for(count = 0; count < 8; count = count + 1)
             regs[count] = 1'd0;
     end
     
