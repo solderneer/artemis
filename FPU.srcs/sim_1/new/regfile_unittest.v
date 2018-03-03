@@ -38,6 +38,7 @@ module regfile_unittest(
     reg_file unittest (I_selA, I_selB, I_selD, I_dataD, I_clk, I_en, I_we, O_dataA, O_dataB);
     
     initial begin
+        // Initialize all inputs
         I_clk = 1'b0;
         I_en = 1'b0;
         I_we = 1'b0;
@@ -47,9 +48,26 @@ module regfile_unittest(
         I_selD = 0;
         I_dataD = 0;
         
-        // Generate clocl
-        forever begin
-            #5; I_clk = ~I_clk;
-        end
+        // Start testing
+        #10; 
+        I_en = 1'b1;
+        I_we = 1'b1;
+        I_dataD = 16'h0f0f; // Enable write and set reg0 to 0x0F0F
+        
+        #10;
+        I_we = 1'b0;
+        I_selD = 3'b100;
+        I_dataD = 16'hffff; // Disable write and target reg 4 with 0xFFFF
+        
+        #10;
+        I_we = 1'b1; // Enable write to reg4
+        
+        #10;
+        I_selB = 3'b100; // Set target of output B to reg4
+    end
+    
+    // Generate clock
+    always begin
+        #5; I_clk = ~I_clk;
     end
 endmodule

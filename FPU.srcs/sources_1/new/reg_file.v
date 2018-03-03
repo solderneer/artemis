@@ -52,13 +52,13 @@ module reg_file(
     always @(posedge I_clk) begin
         if(I_en)
         begin
-            // Assign correct output value to A and B
-            O_dataA <= regs[I_selA];
-            O_dataB <= regs[I_selB];
-            
             // Check for write enable flag and then assign to register
             if(I_we)
                 regs[I_selD] <= I_dataD;
+                
+            // Assign correct output value to A and B
+            O_dataA <= regs[I_selA];
+            O_dataB <= regs[I_selB];
         end
     end
 endmodule
