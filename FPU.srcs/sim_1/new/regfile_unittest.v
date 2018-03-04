@@ -37,6 +37,15 @@ module regfile_unittest(
     // Initialize instance of reg_file
     reg_file unittest (I_selA, I_selB, I_selD, I_dataD, I_clk, I_en, I_we, O_dataA, O_dataB);
     
+    /* Testing Process for reference
+     * 1) Read r0 and r1, write 0xFFFF to r0
+     * 2) Ensure 0xFFFF appears on data out line, write 0x2222 to r2
+     * 3) Write 0x3333 to r2, testing multiple writes to same location
+     * 4) Set up as tho writing 0xFEED to r0 but dont enable the I_we
+     * 5) Write 0x4444 to r4, ensure OxFEED was not written to r0
+     * 6) After waiting multiple clock cycles, read r4 on both output A and B
+     */
+  
     initial begin
         // Initialize all inputs
         I_clk = 1'b0;
@@ -49,21 +58,41 @@ module regfile_unittest(
         I_dataD = 0;
         
         // Start testing
-        #10; 
+        #7; 
         I_en = 1'b1;
-        I_we = 1'b1;
-        I_dataD = 16'h0f0f; // Enable write and set reg0 to 0x0F0F
+        
+        I_selA = 3'b000;
+        I_selB = 3'b001;
+        I_selD = 3'b000;
+        
+        I_dataD = 16'hFFFF;
+        I_we = 1'b1; 
         
         #10;
         I_we = 1'b0;
+        I_selD = 3'b010;
+        I_dataD = 16'h2222;
+        
+        #10;
+        I_we = 1'b1; // Enable write to reg2
+        
+        #10;
+        I_dataD = 16'h3333;
+        
+        #10
+        I_we = 1'b0;
+        I_selD = 3'b000;
+        I_dataD = 16'hFEED;
+        
+        #10;
         I_selD = 3'b100;
-        I_dataD = 16'hffff; // Disable write and target reg 4 with 0xFFFF
+        I_dataD = 16'h4444;
         
-        #10;
-        I_we = 1'b1; // Enable write to reg4
+        #10; I_we = 1'b1;
         
-        #10;
-        I_selB = 3'b100; // Set target of output B to reg4
+        #50;
+        I_selA = 3'b100;
+        I_selB = 3'b100;
     end
     
     // Generate clock
