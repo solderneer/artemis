@@ -50,8 +50,7 @@ module reg_file(
     
     // On clock positive edge
     always @(posedge I_clk) begin
-        if(I_en)
-        begin
+        if(I_en) begin
             // Check for write enable flag and then assign to register
             if(I_we)
                 regs[I_selD] <= I_dataD;
