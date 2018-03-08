@@ -53,7 +53,7 @@ module reg_file(
         if(I_en) begin
             // Check for write enable flag and then assign to register
             if(I_we)
-                regs[I_selD] <= I_dataD;
+                regs[I_selD] = I_dataD;
                 
             // Assign correct output value to A and B
             O_dataA <= regs[I_selA];
