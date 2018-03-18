@@ -24,18 +24,16 @@ module alu(
     input [4:0] I_aluop,
     input [15:0] I_dataA,
     input [15:0] I_dataB,
-    input [15:0] I_pc,
     input [7:0] I_imm,
     input I_en,
     input I_clk,
-    input I_dataDwe,
     output [15:0] O_dataResult,
-    output O_dataDwe,
     output reg O_shldBranch
     );
     
     reg [17:0] int_Result;
     
+    assign O_dataResult = int_Result[15:0]; // Only assign first 15 bits, others used for overflow
     initial begin
         int_Result = 0;
         O_shldBranch = 0;
@@ -68,7 +66,7 @@ module alu(
                             O_shldBranch <= 0;
                         end 
             (4'b1000) : begin
-                            int_Result <= (I_aluop[0]) ? {I_imm, 8'hXX} : {8'hXX, I_imm};
+                            int_Result <= (I_aluop[0]) ? {I_imm, 8'h00} : {8'h00, I_imm};
                             O_shldBranch <= 0;
                         end
             (4'b1001) : begin
@@ -101,7 +99,7 @@ module alu(
                             O_shldBranch <= 1;
                         end
             (4'b1101) : begin
-                            int_Result <= I_dataB;
+                            int_Result <= I_dataA;
                             O_shldBranch <= I_dataB[{I_aluop[0], I_imm[1:0]}];
                         end
         endcase
