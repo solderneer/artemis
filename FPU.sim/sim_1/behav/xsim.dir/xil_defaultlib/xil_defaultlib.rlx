@@ -2,9 +2,10 @@
 2016.2
 C:/Users/Auora/Documents/FPU/FPU.sim/sim_1/behav/glbl.v,1464879896,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sim_1/new/decoder_unittests.v,1520257794,verilog,,,,,,,,,,,
-C:/Users/Auora/Documents/FPU/FPU.srcs/sim_1/new/main_test.v,1521364042,verilog,,,,,,,,,,,
+C:/Users/Auora/Documents/FPU/FPU.srcs/sim_1/new/main_test.v,1521436836,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sim_1/new/regfile_unittest.v,1520158744,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sources_1/new/alu.v,1521363191,verilog,,,,,,,,,,,
+C:/Users/Auora/Documents/FPU/FPU.srcs/sources_1/new/ctrl_unit.v,1521436913,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sources_1/new/fake_ram.v,1520315435,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sources_1/new/inst_decoder.v,1520256225,verilog,,,,,,,,,,,
 C:/Users/Auora/Documents/FPU/FPU.srcs/sources_1/new/reg_file.v,1520473596,verilog,,,,,,,,,,,

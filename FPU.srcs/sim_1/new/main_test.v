@@ -33,27 +33,35 @@ module main_test(
     wire [7:0] imm;
     wire Dwe;
     wire shld_branch;
+    wire en_rgrd;
+    wire en_dec;
+    wire en_alu;
+    wire en_rgwr;
+    wire update;
        
     reg [15:0] inst;
     reg clk;
-    reg en;
+    reg reset;
+    
+    assign en_rgwr = (Dwe & update);
      
-    reg_file reg16_8 (selA, selB, selD, dataD, clk, en, Dwe, dataA, dataB);
-    inst_decoder main_dec (inst, clk, en, aluop, imm, selA, selB, selD, Dwe);
-    alu main_alu (aluop, dataA, dataB, imm, en, clk, dataD, shld_branch);
+    reg_file reg16_8 (selA, selB, selD, dataD, clk, en_rgrd, en_rgwr, dataA, dataB);
+    inst_decoder main_dec (inst, clk, en_dec, aluop, imm, selA, selB, selD, Dwe);
+    alu main_alu (aluop, dataA, dataB, imm, en_alu, clk, dataD, shld_branch);
+    ctrl_unit main_ctrl (clk, reset, en_rgrd, en_dec, en_alu, update);
     
     initial begin 
         clk = 0;
-        en = 0;
         inst = 0;
+        reset = 1;
+        inst = 16'b1000001011111111; // ldr r2, 0xFF
         
-        #5; en = 1;
-        #10; inst = 16'b1000001011111111; // ldr r2, 0xFF
-        #30; inst = 16'b1000000100000001; // ldr r1, 0x01
-        #30; inst = 16'b0001001101000100; // sub r1, r2, r3  
+        #1; reset = 0; // Enable stuff  
+        wait(update == 1) inst = 16'b1000000100000001; #15; // ldr r1, 0x01
+        wait(update == 1) inst = 16'b0001001101000100; #15; // sub r3, r2, r1        
     end
     
     always begin
-        clk = ~clk; #5;
+        #5; clk = ~clk;
     end
 endmodule
