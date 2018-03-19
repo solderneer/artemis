@@ -49,7 +49,7 @@ module reg_file(
     end
     
     // On clock positive edge
-    always @(posedge I_clk) begin
+    always @(negedge I_clk) begin
         if(I_en) begin
             // Check for write enable flag and then assign to register
             if(I_we)

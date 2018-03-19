@@ -54,11 +54,15 @@ module main_test(
         clk = 0;
         inst = 0;
         reset = 1;
-        inst = 16'b1000001011111111; // ldr r2, 0xFF
+        inst = 16'b1000000011111110; // ldrl r0, #0xFE
         
         #1; reset = 0; // Enable stuff  
-        wait(update == 1) inst = 16'b1000000100000001; #15; // ldr r1, 0x01
-        wait(update == 1) inst = 16'b0001001101000100; #15; // sub r3, r2, r1        
+        wait(update == 1) inst = 16'b1000100111101101; #15;// ldrh r1, 0xed
+        wait(update == 1) inst = 16'b0010001000100000; #15;// or r2, r1, r0
+        wait(update == 1) inst = 16'b1000001100000001; #15;// ldrl r3, #0x01
+        wait(update == 1) inst = 16'b1000010000000010; #15;// ldrl r4, #0x02 
+        wait(update == 1) inst = 16'b0000001101110000; #15;// addu r3, r3, r4
+        wait(update == 1) inst = 16'b0010010100001100; #15;// or r5, r0, r3      
     end
     
     always begin

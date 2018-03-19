@@ -39,7 +39,8 @@ module alu(
         O_shldBranch = 0;
     end
     
-    always @(posedge I_clk) begin
+    always @(negedge I_clk) begin
+        if(I_en) begin
         case(I_aluop[4:1])
             (4'b0000) : begin
                             int_Result <= (I_aluop[0]) ? ($signed(I_dataA) + $signed(I_dataB)) : (I_dataA + I_dataB);
@@ -103,5 +104,6 @@ module alu(
                             O_shldBranch <= I_dataB[{I_aluop[0], I_imm[1:0]}];
                         end
         endcase
+        end
     end
 endmodule

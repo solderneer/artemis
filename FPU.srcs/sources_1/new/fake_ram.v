@@ -30,7 +30,7 @@ module fake_ram(
     
     reg [15:0] mem[31:0]; // Defining 32 bytes of memory
     
-    always @(posedge I_clk) begin
+    always @(negedge I_clk) begin
         if(I_we) begin
             mem[I_addr[5:0]] <= I_data;
         end
