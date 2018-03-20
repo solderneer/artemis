@@ -37,16 +37,20 @@ module ctrl_unit(
     assign O_enrgwr = state[3];
     
     initial begin
-        state = 4'b0000;
+        state = 4'b0001;
     end
     
     always @(posedge I_clk) begin
-        case(state)
-            4'b0001 : state <= 4'b0010;
-            4'b0010 : state <= 4'b0100;
-            4'b0100 : state <= 4'b1000;
-            default : state <= 4'b0001;
-        endcase
-        state = (I_reset) ? 4'b0001 : state;
+        if(I_reset) begin
+            state <= 4'b0001;
+        end
+        else begin
+            case(state)
+                4'b0001 : state <= 4'b0010;
+                4'b0010 : state <= 4'b0100;
+                4'b0100 : state <= 4'b1000;
+                default : state <= 4'b0001;
+            endcase
+        end
     end
 endmodule

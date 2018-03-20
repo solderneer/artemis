@@ -13,9 +13,9 @@
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
       <ZoomEndTime time="180200001fs"></ZoomEndTime>
-      <Cursor1Time time="55000000fs"></Cursor1Time>
+      <Cursor1Time time="4600000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/main_test/selA" type="array">
       <obj_property name="ElementShortName">selA[2:0]</obj_property>
       <obj_property name="ObjectShortName">selA[2:0]</obj_property>
@@ -72,10 +72,6 @@
       <obj_property name="ElementShortName">en_rgwr</obj_property>
       <obj_property name="ObjectShortName">en_rgwr</obj_property>
    </wvobject>
-   <wvobject fp_name="/main_test/inst" type="array">
-      <obj_property name="ElementShortName">inst[15:0]</obj_property>
-      <obj_property name="ObjectShortName">inst[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/main_test/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -83,5 +79,26 @@
    <wvobject fp_name="/main_test/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/pc_opcode" type="array">
+      <obj_property name="ElementShortName">pc_opcode[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_opcode[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/pc_out" type="array">
+      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/ram_dataO" type="array">
+      <obj_property name="ElementShortName">ram_dataO[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ram_dataO[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/main_ram/mem" type="array">
+      <obj_property name="ElementShortName">mem[8:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[8:0][15:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/main_ram/O_data" type="array">
+      <obj_property name="ElementShortName">O_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">O_data[15:0]</obj_property>
    </wvobject>
 </wave_config>
