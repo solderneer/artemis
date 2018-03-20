@@ -23,33 +23,39 @@
 module ctrl_unit(
     input I_clk,
     input I_reset,
-    output O_enrgrd,
+    output O_enfetch,
     output O_endec,
+    output O_enrgrd,
     output O_enalu,
-    output O_enrgwr
+    output O_enrgwr,
+    output O_enmem
     );
     
-    reg [3:0] state;
+    reg [5:0] state;
     
-    assign O_endec = state[0];
-    assign O_enrgrd = state[1] | state[3];
-    assign O_enalu = state[2];
-    assign O_enrgwr = state[3];
+    assign O_enfetch = state[0];
+    assign O_endec = state[1];
+    assign O_enrgrd = state[2] | state[4];
+    assign O_enalu = state[3];
+    assign O_enrgwr = state[4];
+    assign O_enmem = state[5];
     
     initial begin
-        state = 4'b0001;
+        state = 6'b000001;
     end
     
     always @(posedge I_clk) begin
         if(I_reset) begin
-            state <= 4'b0001;
+            state <= 6'b000001;
         end
         else begin
             case(state)
-                4'b0001 : state <= 4'b0010;
-                4'b0010 : state <= 4'b0100;
-                4'b0100 : state <= 4'b1000;
-                default : state <= 4'b0001;
+                6'b000001 : state <= 6'b000010;
+                6'b000010 : state <= 6'b000100;
+                6'b000100 : state <= 6'b001000;
+                6'b001000 : state <= 6'b010000;
+                6'b010000 : state <= 6'b100000;
+                default : state <= 6'b000001;
             endcase
         end
     end

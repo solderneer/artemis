@@ -33,15 +33,16 @@ module main_test(
     wire [7:0] imm;
     wire [15:0] ram_dataO;
     wire [1:0] pc_opcode;
-    wire [15:0] pc_in;
     wire [15:0] pc_out;
     
     wire Dwe;
     wire shld_branch;
-    wire en_rgrd;
+    wire en_fetch;
     wire en_dec;
+    wire en_rgrd;
     wire en_alu;
     wire en_rgwr;
+    wire en_mem;
     wire update;
 
     reg clk;
@@ -50,23 +51,21 @@ module main_test(
     reg [15:0] ram_dataI = 0;
     
     assign en_rgwr = (Dwe & update);
-    assign pc_opcode = (reset) ? 2'b00 : ((en_alu) ? 2'b01 : 2'b00);
+    assign pc_opcode = (reset) ? 2'b00 : ((shld_branch) ? 2'b10 : ((en_mem) ? 2'b01 : 2'b00));
      
     reg_file main_reg (selA, selB, selD, dataD, clk, en_rgrd, en_rgwr, dataA, dataB);
     inst_decoder main_dec (ram_dataO, clk, en_dec, aluop, imm, selA, selB, selD, Dwe);
     alu main_alu (aluop, dataA, dataB, imm, en_alu, clk, dataD, shld_branch);
-    ctrl_unit main_ctrl (clk, reset, en_rgrd, en_dec, en_alu, update);
+    ctrl_unit main_ctrl (clk, reset, en_fetch, en_dec, en_rgrd, en_alu, update, en_mem);
     fake_ram main_ram (clk, ram_we, pc_out, ram_dataI, ram_dataO);
-    pc_unit main_pc (clk, pc_in, pc_opcode, pc_out);
+    pc_unit main_pc (clk, dataD, pc_opcode, pc_out);
     
     initial begin 
         clk = 0;
         reset = 1; #20;
         
         reset = 0;
-        wait(pc_out == 7) #10;
-        reset = 1;
-        
+ 
         /* Old testing code
         inst = 16'b1000000011111110; // ldrl r0, #0xFE
         

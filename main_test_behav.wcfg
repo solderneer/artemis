@@ -11,11 +11,17 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="180200001fs"></ZoomEndTime>
-      <Cursor1Time time="4600000fs"></Cursor1Time>
+      <ZoomStartTime time="849833333fs"></ZoomStartTime>
+      <ZoomEndTime time="1030033334fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
    </zoom_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="22" />
+   <wvobject fp_name="/main_test/main_reg/regs[3]" type="array">
+      <obj_property name="ElementShortName">[3][15:0]</obj_property>
+      <obj_property name="ObjectShortName">[3][15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
    <wvobject fp_name="/main_test/selA" type="array">
       <obj_property name="ElementShortName">selA[2:0]</obj_property>
       <obj_property name="ObjectShortName">selA[2:0]</obj_property>
@@ -48,21 +54,21 @@
       <obj_property name="ElementShortName">imm[7:0]</obj_property>
       <obj_property name="ObjectShortName">imm[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/main_test/Dwe" type="logic">
-      <obj_property name="ElementShortName">Dwe</obj_property>
-      <obj_property name="ObjectShortName">Dwe</obj_property>
-   </wvobject>
    <wvobject fp_name="/main_test/shld_branch" type="logic">
       <obj_property name="ElementShortName">shld_branch</obj_property>
       <obj_property name="ObjectShortName">shld_branch</obj_property>
    </wvobject>
-   <wvobject fp_name="/main_test/en_rgrd" type="logic">
-      <obj_property name="ElementShortName">en_rgrd</obj_property>
-      <obj_property name="ObjectShortName">en_rgrd</obj_property>
+   <wvobject fp_name="/main_test/en_fetch" type="logic">
+      <obj_property name="ElementShortName">en_fetch</obj_property>
+      <obj_property name="ObjectShortName">en_fetch</obj_property>
    </wvobject>
    <wvobject fp_name="/main_test/en_dec" type="logic">
       <obj_property name="ElementShortName">en_dec</obj_property>
       <obj_property name="ObjectShortName">en_dec</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/en_rgrd" type="logic">
+      <obj_property name="ElementShortName">en_rgrd</obj_property>
+      <obj_property name="ObjectShortName">en_rgrd</obj_property>
    </wvobject>
    <wvobject fp_name="/main_test/en_alu" type="logic">
       <obj_property name="ElementShortName">en_alu</obj_property>
@@ -71,6 +77,10 @@
    <wvobject fp_name="/main_test/en_rgwr" type="logic">
       <obj_property name="ElementShortName">en_rgwr</obj_property>
       <obj_property name="ObjectShortName">en_rgwr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_test/en_mem" type="logic">
+      <obj_property name="ElementShortName">en_mem</obj_property>
+      <obj_property name="ObjectShortName">en_mem</obj_property>
    </wvobject>
    <wvobject fp_name="/main_test/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
@@ -92,13 +102,8 @@
       <obj_property name="ElementShortName">ram_dataO[15:0]</obj_property>
       <obj_property name="ObjectShortName">ram_dataO[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/main_test/main_ram/mem" type="array">
-      <obj_property name="ElementShortName">mem[8:0][15:0]</obj_property>
-      <obj_property name="ObjectShortName">mem[8:0][15:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject fp_name="/main_test/main_ram/O_data" type="array">
-      <obj_property name="ElementShortName">O_data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">O_data[15:0]</obj_property>
+   <wvobject fp_name="/main_test/Dwe" type="logic">
+      <obj_property name="ElementShortName">Dwe</obj_property>
+      <obj_property name="ObjectShortName">Dwe</obj_property>
    </wvobject>
 </wave_config>

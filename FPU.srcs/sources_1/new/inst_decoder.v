@@ -51,10 +51,10 @@ module inst_decoder(
             O_selB <= I_inst[4:2];
             O_Imm <= I_inst[7:0];
             
-            case(I_inst[4:1])
-                5'b0111 : O_regwe <= 0;
-                5'b1100 : O_regwe <= 0;
-                5'b1101 : O_regwe <= 0;
+            case(I_inst[15:12])
+                4'b0111 : O_regwe <= 0;
+                4'b1100 : O_regwe <= 0;
+                4'b1101 : O_regwe <= 0;
                 default : O_regwe <= 1;
             endcase
             
